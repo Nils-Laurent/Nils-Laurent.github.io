@@ -23,7 +23,7 @@ function append_list(inList) {
 
     if (el.hasOwnProperty('authFullName_s')) {
       lStr = document.createElement('strong');
-      lStr.innerHTML = el.authFullName_s;
+      lStr.innerHTML = el.authFullName_s.join(", ");
       lIt.appendChild(lStr);
     }
 
