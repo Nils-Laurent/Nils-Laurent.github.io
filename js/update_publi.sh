@@ -24,6 +24,8 @@ wget "${req}" -O ${data_file}
 
 load_file="./load_publi.js"
 
+echo `sed -e 's/^ *//' < ${data_file} | tr -d '\n'` > "${data_file}"
+
 echo -n "hal_res = '" > "${load_file}"
 head -c -1 -q "${data_file}" >> "${load_file}"
 echo "'" >> "${load_file}"

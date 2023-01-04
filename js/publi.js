@@ -33,6 +33,7 @@ function append_list(inList) {
 
       lA = document.createElement('a');
       lA.href = el.uri_s;
+      lA.target = "_blank";
       lA.innerHTML = el.title_s;
       lIt.appendChild(lA);
     }
@@ -70,6 +71,7 @@ function append_list(inList) {
       lA = document.createElement('a');
       lA.href = el.seeAlso_s;
       lA.innerHTML = "[CODE]";
+      lA.target = "_blank";
       lIt.appendChild(lA);
       el.seeAlso_s;
     }
