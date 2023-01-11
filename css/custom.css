@@ -1,7 +1,11 @@
 
-/* https://www.magicpattern.design/tools/css-backgrounds */
 header {
+  background: linear-gradient(#bbb, #777);
+}
+
+/* https://www.magicpattern.design/tools/css-backgrounds */
+/*header {
   background-color: #4b4b4b;
   opacity: 1;
   background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #4b4b4b 40px ), repeating-linear-gradient( #4d585f55, #4d585f );
-}
+}*/
