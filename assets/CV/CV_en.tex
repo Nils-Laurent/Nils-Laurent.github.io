@@ -1,0 +1,280 @@
+% !TeX spellcheck = en_US
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+% \usepackage[francais]{babel}
+\usepackage{ragged2e} % justify, align right ...
+\usepackage{multicol} % columns
+\usepackage[T1]{fontenc}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[left=1.5cm,right=1.5cm,top=1cm,bottom=1cm]{geometry}
+\usepackage{nopageno} % remove page numbers
+
+\usepackage{hyperref}
+
+\usepackage{multicol}
+
+% bibliography without title
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+%default color
+\definecolor{DefaultGray}{rgb}{0.2, 0.2, 0.2}
+
+\definecolor{MyGray}{rgb}{0.4, 0.4, 0.4}
+\definecolor{MyLightGray}{rgb}{0.97, 0.97, 0.97}
+\definecolor{BorderLightGray}{rgb}{0.83, 0.83, 0.83}
+
+%set default color
+\makeatletter
+\newcommand{\globalcolor}[1]{%
+	\color{#1}\global\let\default@color\current@color
+}
+\makeatother
+\AtBeginDocument{\globalcolor{DefaultGray}}
+
+\begin{document}
+	\noindent
+	\textit{\Large \color{Black} Nils Laurent} \hfill {Curriculum vitae (\today)}\\
+	\vspace{0mm}\\
+	Born the 7th of April 1994 in Thiers (France)\\
+	Email : nils.laurent@univ-grenoble-alpes.fr\\
+	Web page : \url{https://nils-laurent.github.io/}\\
+	\vspace{5mm}
+	
+	%---------------------------------------------------------------------
+	\noindent
+	\textit{\Large \color{MyGray} \hspace{5mm} Background}
+	\vspace{2mm}
+	{\color{DefaultGray}\hrule height .1pt}
+	\vspace{4mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} 2022-2023
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{Gipsa-lab} (France): Post-doc, supervised by \textbf{Nicolas Le-Bihan} (Gipsa-lab), \textbf{Salem Said} (LJK) and \textbf{Florent Bouchard} (L2S), on \emph{geometrical machine learning: new approaches beyond Riemannian geometry - application to the Stiefel manifold}.
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} 2022
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{LJK, MSTII, Grenoble INP} (France): PhD thesis, supervised by \textbf{Sylvain Meignen} (LJK), co-supervised by \textbf{Bertrand Rivet} (GIPSA-Lab) and \textbf{Julie Fontecave-jallon} (TIMC-IMAG) on \emph{time-frequency analysis of noisy multicomponent signals}.\\
+		This thesis was defended the 9th of september 2022 in front of the jury:
+		\begin{multicols}{3}
+			\begin{itemize}
+				\item[] Pierre Chainais
+				\item[] Maria Sandsten
+				\item[] Roland Badeau
+			\end{itemize}
+			\columnbreak
+			\begin{itemize}
+				\item[] Patrick Flandrin
+				\item[] Jérôme Mars
+				\item[] 
+			\end{itemize}
+			\columnbreak
+			\begin{itemize}
+				\item[] Sylvain Meignen
+				\item[] Bertrand Rivet
+				\item[] 
+			\end{itemize}
+		\end{multicols}
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} 2019
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{ENSIMAG} (France): \textbf{Engineering degree} with applied mathematics specialization in \emph{modeling, calculus and simulation}. Apprenticeship at Kalray on code coverage for custom processor architecture.
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} 2016
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{IUT Lyon 1} (France): \textbf{Two-year university degree} in computer science.
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} 2014
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{Sundsgården} (Sweden): Culture and communication studies, \textbf{camaraderie award}.
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} 2013
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{Pierre Desgranges} (France): \textbf{Baccalaureate} of a vocational high school in electronic and numerical systems, specialized in telecommunication and networking.
+	\end{minipage}\\
+	\vspace{5mm}
+	
+	%---------------------------------------------------------------------
+	\noindent
+	\textit{\Large \color{MyGray} \hspace{5mm} Doctoral research}
+	\vspace{2mm}
+	{\color{DefaultGray}\hrule height .1pt}
+	\vspace{5mm}
+	
+	\textbf{Published articles,}
+	\nocite{*}
+	\bibliographystyle{unsrt}
+	\bibliography{refs}
+	\vspace{5mm}
+	
+%	\textbf{Accepted articles,}
+%	\begin{itemize}
+%		\item[*] 
+%	\end{itemize}
+%	\vspace{5mm}
+	
+	\textbf{Submitted articles,}
+	\begin{itemize}
+		\setlength\itemsep{3mm}
+%		\item[*] Juan M. Miramont, François Auger, Marcelo A. Colominas, Nils Laurent, and Sylvain Meignen. Unsupervised classification of the spectrogram zeros. \emph{IEEE Transactions on Signal Processing}.
+		\item[*] N. Laurent, S. Meignen, M. A. Colominas, J. M. Miramont and F. Auger. A Novel Approach Based on Voronoï cells to Classify Spectrogram Zeros of Multicomponent Signals. \emph{ICASSP 2023}.
+	\end{itemize}
+	\vspace{5mm}
+	
+	\newpage
+	
+	%---------------------------------------------------------------------
+	\noindent
+	\textit{\Large \color{MyGray} \hspace{5mm} Teaching}
+	\vspace{2mm}
+	{\color{DefaultGray}\hrule height .1pt}
+	\vspace{5mm}
+	
+	Note that L1, L2, L3 correspond to undergraduate levels and M1, M2 graduate levels.
+
+	\begin{itemize}
+	\setlength\itemsep{3mm}
+	\item[*] 2023 [currently] Teaching assistant at \textbf{Université Grenoble Alpes}:\\
+	System and programming, Bash and C, L1 ($\approx$ 40 hours).
+	\item[*] 2021 Teaching assistant at \textbf{Ensimag} engineering school:\\
+	Lebesgue integration, Fourier, norms and Banach spaces, L3 ($\approx$ 37 hours).
+	\item[*] 2021 Lecturer at \textbf{Ensimag} engineering school:\\
+	continuity, Taylor expansions, numerical methods, L3 apprentices ($\approx$ 49 hours)
+	\item[*] 2020 Lab work supervisor at \textbf{Ensimag} engineering school:\\ numerical analysis, L3 ($\approx$ 6 hours)
+	\item[*] 2020 Lecturer and teaching assistant at \textbf{Université Grenoble Alpes}:\\
+	limits and asymptotic analysis, L1 ($\approx$ 22 hours)
+	\item[*] 2020 Lab work supervisor at \textbf{Université Grenoble Alpes}:\\
+	image processing, L1 ($\approx$ 18 hours)
+	\end{itemize}
+
+	During my thesis, I also passed a label on \emph{research and teaching in higher education}. In this context, I have studied theories and methods associated to teaching.
+
+	\vspace{5mm}
+	
+	%---------------------------------------------------------------------
+	\noindent
+	\textit{\Large \color{MyGray} \hspace{5mm} Other skills}
+	\vspace{2mm}
+	{\color{DefaultGray}\hrule height .1pt}
+	\vspace{5mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} Programming
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		Most used: Julia, Matlab, C, C++.\\
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.20\textwidth}
+		\color{MyGray} Languages
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		\textbf{French} : native.\\
+		\textbf{Swedish} : everyday language, I regularly speak with my Swedish family.\\
+		\textbf{English} : everyday language, reading/writing articles.\\
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	%---------------------------------------------------------------------
+	\noindent
+	\textit{\Large \color{MyGray} \hspace{5mm} Service}
+	\vspace{2mm}
+	{\color{DefaultGray}\hrule height .1pt}
+	\vspace{5mm}
+	
+	\begin{itemize}
+		\setlength\itemsep{3mm}
+		\item[*] Developed DAO team website \url{https://dao.imag.fr/}
+		\item[*] Organizer and animator of an event in Pierre Desgranges high school (in France) to introduce methodologies, theoretical concepts and prepare for higher education.
+	\end{itemize}
+	\vspace{5mm}
+	
+	%---------------------------------------------------------------------
+%	\noindent
+%	\textit{\Large \color{MyGray} \hspace{5mm} Thesis label \emph{research and teaching in higher education}}
+%	\vspace{2mm}
+%	{\color{DefaultGray}\hrule height .1pt}
+%	\vspace{5mm}
+%	
+%	\noindent
+%	\begin{minipage}{0.20\textwidth}
+%		\color{MyGray} Teaching
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.70\textwidth}
+%		\textbf{}.\\
+%	\end{minipage}\\
+%	\vspace{2mm}
+	
+	%---------------------------------------------------------------------
+	\noindent
+	\textit{\Large \color{MyGray} \hspace{5mm} My experience in Sweden}
+	\vspace{2mm}
+	{\color{DefaultGray}\hrule height .1pt}
+	\vspace{5mm}
+	
+	I had this experience in 2013-2014 after high school, it helped me to think about my future and reinforced the fact that I wanted to do more theoretical studies. Here is an overview of what I did when I was in Sweden at that time:
+	\vspace{3mm}
+	
+	\noindent
+	\begin{minipage}{0.25\textwidth}
+		\color{MyGray} Courses at Sundsgården
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		Literature, history, mathematics, English, biological and environmental science.
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	\noindent
+	\begin{minipage}{0.25\textwidth}
+		\color{MyGray} Self-taught
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.70\textwidth}
+		Integration, Taylor expansions, numerical integration, computer languages (C++, Python)
+	\end{minipage}\\
+	\vspace{2mm}
+	
+	%---------------------------------------------------------------------
+\end{document}
