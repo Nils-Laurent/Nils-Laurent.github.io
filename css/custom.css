@@ -1,6 +1,24 @@
 
-header {
-  background: linear-gradient(#bbb, #777);
+/*background-image: url("../assets/background.jpg");*/
+
+header::after {
+  content: "";
+  background-image: url("../assets/background.jpg");
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+header h1 {
+  color: #555;
+}
+
+section {
+  background-color: white;
 }
 
 /* https://www.magicpattern.design/tools/css-backgrounds */
