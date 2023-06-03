@@ -1,9 +1,14 @@
 
 /*background-image: url("../assets/background.jpg");*/
 
-header::after {
+header.header-img {
+  background-image: url("../assets/banner.jpg");
+  box-shadow: 0 6px 20px -2px #BBB;
+}
+
+/*header::after {
   content: "";
-  background-image: url("../assets/background.jpg");
+  background-image: url("../assets/banner.jpg");
   opacity: 0.3;
   top: 0;
   left: 0;
@@ -11,10 +16,10 @@ header::after {
   right: 0;
   position: absolute;
   z-index: -1;
-}
+}*/
 
 header h1 {
-  color: #555;
+  color: #333;
 }
 
 section {
