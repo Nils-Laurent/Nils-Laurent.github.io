@@ -11,10 +11,29 @@
 \usepackage{nopageno} % remove page numbers
 
 \usepackage{hyperref}
+\usepackage[dvipsnames, table]{xcolor}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={green!55!black},
+	urlcolor={blue!80!black}
+}
+
+
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{refs.bib}
+\AtEveryBibitem{
+	\clearfield{url}
+	\clearfield{urldate}
+	\clearfield{urlyear}
+	\clearfield{urlmonth}
+}
+\AtEveryCitekey{\clearfield{url}\clearfield{note}\clearfield{urldate}\clearfield{urlyear}\clearfield{urlmonth}}
+
 
 % bibliography without title
-\usepackage{etoolbox}
-\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 
 %default color
 \definecolor{DefaultGray}{rgb}{0.2, 0.2, 0.2}
@@ -32,217 +51,7 @@
 \AtBeginDocument{\globalcolor{DefaultGray}}
 
 \begin{document}
-\noindent
-\textit{\Large \color{Black} Nils Laurent} \hfill {Curriculum vitae (\today)}\\
-\vspace{0mm}\\
-Né le 7 avril 1994 à Thiers\\
-Email : nils.laurent@univ-grenoble-alpes.fr\\
-Page web : \url{https://nils-laurent.github.io/}\\
-\vspace{5mm}
-
-%---------------------------------------------------------------------
-\noindent
-\textit{\Large \color{MyGray} \hspace{5mm} Parcours professionel et de formation}
-\vspace{2mm}
-{\color{DefaultGray}\hrule height .1pt}
-\vspace{4mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} 2022 - octobre 2023
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	\emph{Geometrical machine learning: new approaches beyond Riemannian geometry - application to the Stiefel manifold}, post-doctorat au laboratoire \textbf{Gipsa-lab}, encadré par \textbf{Nicolas Le-Bihan} (Gipsa-lab), \textbf{Salem Said} (LJK) et \textbf{Florent Bouchard} (L2S).
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} 2019-2022
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	\emph{Analyse temps-fréquence de signaux multicomposantes bruités}, doctorat au  laboratoire \textbf{LJK} dirigé par \textbf{Sylvain Meignen} (LJK), co-dirigé par \textbf{Bertrand Rivet} (GIPSA-Lab) et co-encadré \textbf{Julie Fontecave-jallon} (TIMC-IMAG).\\
-	La soutenance de thèse s'est déroulée le 9 septembre 2022 devant le jury:
-	\begin{itemize}
-		\item[] Pierre Chainais -- (président du jury)
-		\item[] Maria Sandsten -- (rapportrice)
-		\item[] Roland Badeau -- (rapporteur)
-		\item[] Patrick Flandrin -- (examinateur)
-		\item[] Jérôme Mars -- (examinateur)
-		\item[] Sylvain Meignen -- (directeur)
-		\item[] Bertrand Rivet -- (co-directeur)
-	\end{itemize}
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} 2019
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	\textbf{Diplôme d'ingénieur} à l'\textbf{Ensimag}, filière modélisation mathématiques, mention bien (15,98/20). Alternance effectuée à l'entreprise Kalray.% (15,98/20).
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} 2016
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	\textbf{DUT informatique} à l'IUT Lyon 1.
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} 2014
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	Culture et communication à \textbf{Sundsgården} en Suède, et obtention du \textbf{prix de camaraderie}.
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} 2013
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	\textbf{Baccalauréat} au lycée professionnel Pierre Desgranges: systèmes électroniques et numériques, spécialisation en télécommunication et réseaux.
-\end{minipage}\\
-\vspace{5mm}
-
-%---------------------------------------------------------------------
-\noindent
-\textit{\Large \color{MyGray} \hspace{5mm} Recherche doctorale}
-\vspace{2mm}
-{\color{DefaultGray}\hrule height .1pt}
-\vspace{4mm}
-
-\textbf{Articles publiés,}
-\nocite{*}
-\bibliographystyle{unsrt}
-\bibliography{refs}
-\vspace{5mm}
-\newpage
-
-%\textbf{Articles acceptés,}
-%\begin{itemize}
-%	\item[*] Juan M. Miramont, François Auger, Marcelo A. Colominas, Nils Laurent, and Sylvain Meignen. Unsupervised Classification of the Spectrogram Zeros with an Application to Signal Detection and Denoising. \textit{Signal Processing} 2023.
-%\end{itemize}
-%\vspace{5mm}
-
-%\textbf{Articles soumis,}
-%\begin{itemize}
-%  \setlength\itemsep{3mm}
-%  \item[*] Juan M. Miramont, François Auger, Marcelo A. Colominas, Nils Laurent, and Sylvain Meignen. Unsupervised classification of the spectrogram zeros.
-%\end{itemize}
-%\vspace{5mm}
-%\newpage
-
-%---------------------------------------------------------------------
-\noindent
-\textit{\Large \color{MyGray} \hspace{5mm} Enseignements}
-\vspace{2mm}
-{\color{DefaultGray}\hrule height .1pt}
-\vspace{4mm}
-
-\begin{itemize}
-	\setlength\itemsep{3mm}
-	\item[*] 2023 Chargé de TD/TP à l'\textbf{Université Grenoble Alpes}:\\
-	Système et environnement de programmation, Bash et C, L1 ($\approx$ 40 hetd).
-	\item[*] 2021 Chargé de TD à l'\textbf{Ensimag}:\\
-	intégrale de Lebesgue, Fourier, normes et espaces de Banach, L3 ($\approx$ 37 hetd).
-	\item[*] 2021 Cours-TD à l'\textbf{Ensimag}:\\
-	continuité, développements de Taylor, méthodes numériques, L3 aux alternants ($\approx$ 49 hetd)
-	\item[*] 2020 Chargé de TP à l'\textbf{Ensimag}:\\ analyse numérique, L3 ($\approx$ 6 hetd)
-	\item[*] 2020 Cours-TD à l'\textbf{Université Grenoble Alpes}:\\
-	limites et étude asymptotique, L1 ($\approx$ 22 hetd)
-	\item[*] 2020 Chargé de TP à l'\textbf{Université Grenoble Alpes}:\\
-	traitement d'images, L1 ($\approx$ 18 hetd)
-\end{itemize}
-
-\vspace{3mm}
-Pendant ma thèse, j'ai validé le label \emph{recherche et enseignement supérieur}. Dans ce cadre, j'ai étudié des théories et des méthodes associées à la pédagogie et à l'enseignement.
-
-
-
-\vspace{5mm}
-
-%---------------------------------------------------------------------
-\noindent
-\textit{\Large \color{MyGray} \hspace{5mm} Autres compétences}
-\vspace{2mm}
-{\color{DefaultGray}\hrule height .1pt}
-\vspace{5mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} Programmation
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	Les plus utilisés: Julia, Matlab, C, C++.\\
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} Langues
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	\textbf{Suédois} : Courant, utilisation régulière avec ma famille suédoise.\\
-	\textbf{Anglais} : Langage courant, lecture/écriture d'articles.\\
-\end{minipage}\\
-\vspace{2mm}
-
-%---------------------------------------------------------------------
-\noindent
-\textit{\Large \color{MyGray} \hspace{5mm} Services}
-\vspace{2mm}
-{\color{DefaultGray}\hrule height .1pt}
-\vspace{5mm}
-
-\begin{itemize}
-	\setlength\itemsep{3mm}
-	\item[*] Développement du site web pour l'équipe DAO \url{https://dao.imag.fr/}
-	\item[*] Organisateur et animateur d'un événement au lycée Pierre Desgranges pour introduire des méthodologies, concepts théoriques et préparer pour les études supérieures.
-\end{itemize}
-\vspace{5mm}
-
-%---------------------------------------------------------------------
-\noindent
-\textit{\Large \color{MyGray} \hspace{5mm} Expérience en Suède}
-\vspace{2mm}
-{\color{DefaultGray}\hrule height .1pt}
-\vspace{5mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} Cours
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	Littérature, histoire, mathématiques, anglais, science bilogique et environnementale
-\end{minipage}\\
-\vspace{2mm}
-
-\noindent
-\begin{minipage}{0.20\textwidth}
-	\color{MyGray} Apprentissage en autodidacte
-\end{minipage}
-\hfill
-\begin{minipage}{0.70\textwidth}
-	Intégration, développement limités, intégration numérique, langages informatiques (C++, python)
-\end{minipage}\\
-\vspace{2mm}
-
-\paragraph{} Cette expérience m'a permis de prendre du recul, de m'orienter et de me préparer pour intégrer un IUT informatique.
+	
+	\input{CV_inner_fr.tex}
 
 \end{document}
