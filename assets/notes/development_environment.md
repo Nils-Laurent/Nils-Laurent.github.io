@@ -37,22 +37,67 @@ ssh -L 22022:gtx680.cbp.ens-lyon.fr:22 username@ssh.ens-lyon.fr
 
 See https://www.cbp.ens-lyon.fr/python/forms/CloudCBP for the choice of a machine.
 
-### Authenticating with keys pair
+### How to avoid typing your password
 
-To avoid entering the password each time, you can use a public-key cryptographic system. This can be done with
-the following steps.
+To avoid entering the password each time you create the SSH tunnel,
+you can use a public-key/private-key cryptographic system.
 
-1. Create a public/private key pair, e.g. using `ssh-keygen -t ed25519 -C "your_email@example.com"`.
-   Your **public key**, is located in a file with `.pub` extension (the path is given when after running the command).
-   It should look like
+The explanations are separated in three parts:
+* Create the public-key and private-key using `ssh-keygen`
+* Enable the key with `ssh-add`
+* Add the public-key to the remote file system
+
+**Part one** : create the public-key and the private-key
+1. On a terminal on the local machine, type `ssh-keygen -t ed25519 -C "your_email@example.com"`.
+2. It will propose you a path in which to save the public and private key files.
    ```
-   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB8Ht0Z3j6yDWPBHQtOp/R9rjWvfMYo3MSA/K6q2D81r your_email@example.com
+   Generating public/private ed25519 key pair.
+   Enter file in which to save the key (/path/to/.ssh/id_ed25519):
    ```
-2. copy the **public key** and add it on a new line at the end of the file `authorized_keys`
-on the **remote** file system.
-The file `authorized_keys`, if it exists, should have the path `~/.ssh/authorized_keys`.
-If it does not exist, create it and give it permissions `700` (you can use `chmod` for that).
+   If the proposed path suites you, press `enter`, otherwise type the desired path.
+3. Then, it will ask you for a passphrase to encrypt the private key. You can choose any password you want,
+   but remember it since it will be asked later
+   ```
+   Enter passphrase (empty for no passphrase):
+   ```
 
+From now on, the **public-key** refers to the content present in the file `/path/to/.ssh/id_ed25519.pub`, 
+where `/path/to/.ssh` is the same directory as the one given in the step `2.` of part one. 
+The public-key should look like
+```
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB8Ht0Z3j6yDWPBHQtOp/R9rjWvfMYo3MSA/K6q2D81r your_email@example.com
+```
+In the third part, we will need to copy the public-key, so keep it in mind.
+
+**Part two** : enable the key with `ssh-add`
+
+1. Add the key to the `ssh-add` with
+```
+ssh-add /path/to/.ssh/id_ed25519
+```
+where the path `/path/to/.ssh/` is the folder containing the public and private key files.
+2. It will then ask you for the password you chose during part one.
+
+**Part three** : add the public-key to the remote file system
+1. If it does not exist, create the file `authorized_keys` using
+```
+touch ~/.ssh/authorized_keys
+```
+2. Then open this file, e.g. using
+```
+vi ~/.ssh/authorized_keys
+```
+
+3. At the end of this file, add your **public-key** on a new line.
+
+4. Save and exit `vi` by typing `:x`
+
+5. Change permissions using
+```
+chmod 777 ~/.ssh/authorized_keys
+```
+
+That's it! You should now be able to connect through SSH without entering your password.
 
 ## SSH configuration on a code editor
 
@@ -63,7 +108,10 @@ and to manage python interpreters I am using. Those are
 3. deployment settings (requires SSH settings)
 
 Let us go through each of those points in that order. Firstly, note that all editors may include all those features.
-Secondly, I will provide examples of settings which I use in my editor, which is PyCharm.
+Secondly, I will provide examples of settings which I use in my editor, which is PyCharm version 2023.3,
+available here https://www.jetbrains.com/fr-fr/pycharm/download/other.html
+
+Before starting, if you are using PyCharm for the first time and want to create a project, you can 
 
 ### The SSH connection settings
 
@@ -110,14 +158,14 @@ Here is the command I use to do that
 ```
 nohup path/to/python3 script_name.py &
 ```
-where `&` puts the process in the background and `nohup` is a UNIX command with description
+where `&` puts the process in the background and `nohup` is a UNIX command with the following description
 > nohup - run a command immune to hangups, with output to a non-tty
 >
 > -- <cite>manual of NOHUP(1)</cite>.
 
 Note that `nohup` creates a file `nohup.out` where `stdout` and `stderr` are redirected.
 
-In order to identify the program, we can save the PID of the process in a file just after running the script
+In order to identify the process, we can save the PID of the process in a file just after running the script
 ```
 nohup path/to/python3 script_name.py &
 echo $! > save_pid
