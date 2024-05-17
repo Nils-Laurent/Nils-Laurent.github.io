@@ -107,11 +107,10 @@ and to manage python interpreters I am using. Those are
 2. python interpreter settings (requires SSH settings)
 3. deployment settings (requires SSH settings)
 
-Let us go through each of those points in that order. Firstly, note that all editors may include all those features.
+Let us go through each of those points in that order.
+However, note that all editors do not necessarily include all those features.
 Secondly, I will provide examples of settings which I use in my editor, which is PyCharm version 2023.3,
 available here https://www.jetbrains.com/fr-fr/pycharm/download/other.html
-
-Before starting, if you are using PyCharm for the first time and want to create a project, you can 
 
 ### The SSH connection settings
 
@@ -154,27 +153,22 @@ in the tab named `Mappings`.
 In this section, we detail one possible way to run a program allowing you to disconnect from the SSH session without
 killing process. For example, this allows us to power-off the local computer while having computations running remotely.
 
-Here is the command I use to do that
-```
-nohup path/to/python3 script_name.py &
-```
-where `&` puts the process in the background and `nohup` is a UNIX command with the following description
-> nohup - run a command immune to hangups, with output to a non-tty
->
-> -- <cite>manual of NOHUP(1)</cite>.
-
-Note that `nohup` creates a file `nohup.out` where `stdout` and `stderr` are redirected.
-
-In order to identify the process, we can save the PID of the process in a file just after running the script
+Here are two commands I use to do that
 ```
 nohup path/to/python3 script_name.py &
 echo $! > save_pid
 ```
-where the variable `$!` gives the PID of the most recent background process.
+The symbol `&` puts the process in the background and `nohup` is a UNIX command immune to hangups, meaning it will
+continue to run when you close the SSH session. The variable `$!` gives the PID of the most recent background process.
+
+The second command `echo $! > save_pid` saves the PID of the `nohup` process in the file `save_pid`. This allows you
+to check for its status using `ps -p $(cat save_pid)`.
 
 If you do not have access to the PID, you can find it in a list using `ps ax`,
 where `ax` options lift some restrictions on the process selection.
-Since the list is usually too big, we can filter it to find our process
-```
-ps ax | grep script_name.py
-```
+Since the list is usually too big, we can filter it to find our process using
+`ps ax | grep script_name.py`.
+
+Also, `nohup` creates a file `nohup.out` where `stdout` and `stderr` are redirected. Therefore,
+you can open this file to look for any error message or information about the execution of
+your python script.
