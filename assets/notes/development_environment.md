@@ -109,8 +109,11 @@ and to manage python interpreters I am using. Those are
 
 Let us go through each of those points in that order.
 However, note that all editors do not necessarily include all those features.
-Secondly, I will provide examples of settings which I use in my editor, which is PyCharm version 2023.3,
-available here https://www.jetbrains.com/fr-fr/pycharm/download/other.html
+
+I will provide examples of settings which I use in my editor, which is PyCharm version 2023.3,
+available here https://www.jetbrains.com/fr-fr/pycharm/download/other.html.
+
+If you use PyCharm you can create a project or open an existing one and follow the examples given thereafter.
 
 ### The SSH connection settings
 
@@ -136,6 +139,9 @@ In PyCharm it can be done with `File > Settings > Project: name > Interpreter`, 
 Additionally, it will also propose synchronize source folders, if you use this, make sure the paths are set correctly.
 
 ![alt text](./PyCharm_SSH/Interpreter.JPG "Python interpreter")
+
+To use this interpreter, you have to go to `Run > Edit Configurations`, then add a configuration by clicking on `+`
+and finally, select your *On SSH* interpreter from the dropdown menu which is below `Run`.
 
 ### Deployment settings
 
