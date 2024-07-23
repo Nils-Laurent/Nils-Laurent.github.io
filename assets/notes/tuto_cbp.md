@@ -80,8 +80,8 @@ Add an "on SSH" interpreter
 * Tell the editor to use the SSH setting specified above
 * Give the path of the interpreter on the remote machine
 
-In PyCharm it can be done with `File > Settings > Project: name > Interpreter`, `add interpreter`,
-`On SSH`. The following steps are straight forward, and at some point, the path to the interpreter will be asked.
+In PyCharm it can be done with `File > Settings... > Project: name > Interpreter`, `Add Interpreter`,
+`On SSH...`. The following steps are straight forward, and at some point, the path to the interpreter will be asked.
 Additionally, it will also propose synchronize source folders, if you use this, make sure the paths are set correctly.
 
 ![alt text](./PyCharm_SSH/Interpreter.JPG "Python interpreter")
@@ -102,6 +102,18 @@ in the tab named `Mappings`.
 ![alt text](./PyCharm_SSH/Deploy.JPG "Deployment")
 
 ### Code editor (4/4) : Run script through a configuration
+
+On the top of the window, there is a dropdown menu next to the run button. Click on it and click on
+`Edit configurations...`.
+
+Once the new window is opened, click on `+` and choose Python. This will create an `Unnamed` setting that you have to modify.
+
+Edit the `Name` as you like.
+
+Below `Run`, click on the dropdown menu and select your Python interpreter that is on the CBP.
+
+Next to the script dropdown menu, indicate the path to your main script on the local computer.
+You can click on the folder icon next to the textbox to get
 
 # Optional features
 
@@ -138,7 +150,7 @@ The **public-key** should look like
 ```
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB8Ht0Z3j6yDWPBHQtOp/R9rjWvfMYo3MSA/K6q2D81r your_email@example.com
 ```
-In the third part, we will need to copy the public-key, so save it.
+In the second part, we will need to copy the public-key, so save it.
 
 **Part two (local machine)** : inform your system about the public-key and private-key
 
@@ -149,6 +161,16 @@ ssh-add /path/to/.ssh/id_ed25519
 where the path `/path/to/.ssh/` is the folder containing the public and private key files.
 
 2.2 It will then ask you for the password you chose at step `1.3`.
+
+2.3 Edit `config` file that is in folder `C:\Users\username\.ssh` on windows.
+
+```
+Host w6328
+ProxyCommand ssh -W %h:%p username@ssh.ens-lyon.fr
+IdentityFile ~/.ssh/id_ed25519
+ForwardX11 yes
+Compression yes
+```
 
 **Part three (CBP)** : add the public-key to the CBP
 
