@@ -55,6 +55,7 @@ and to manage python interpreters I am using. Those are
 1. the SSH connection settings: *use the SSH tunnel*
 2. python interpreter settings (requires SSH settings): *use a python interpreter on CBP*
 3. deployment settings (requires SSH settings): *synchronize your source code on CBP automatically*
+4. Create a configuration to run a python script
 
 Let us go through each of those points in that order.
 However, note that all editors do not necessarily include all those features.
@@ -64,30 +65,31 @@ If you use PyCharm you can create a project or open an existing one and follow t
 ### Code editor (1/4) : use the SSH tunnel
 
 Assuming that you have opened the SSH tunnel as explain previously, then the configuration is straight forward.
-You should be able to address the following fields:
+At some point, your editor will ask you for the fields:
 
 * Host: `localhost` (since the entry point of the tunnel is on the local machine)
 * Port: `22022` (this is the port number we chose when creating the tunnel)
 * Username (the one required to authenticate on the remote system)
 
-In PyCharm those can be found in `File > Settings > Tools > SSH Configurations`.
+In PyCharm those can be found in `File > Settings...`, `Tools > SSH Configurations`.
 
 ![alt text](./PyCharm_SSH/SSH_Configurations.JPG "SSH config.")
 
 ### Code editor (2/4) : Python interpreter
 
-Add an "on SSH" interpreter
+Add an "*On SSH*" interpreter
 * Tell the editor to use the SSH setting specified above
 * Give the path of the interpreter on the remote machine
 
-In PyCharm it can be done with `File > Settings... > Project: name > Interpreter`, `Add Interpreter`,
-`On SSH...`. The following steps are straight forward, and at some point, the path to the interpreter will be asked.
-Additionally, it will also propose synchronize source folders, if you use this, make sure the paths are set correctly.
+In PyCharm it can be done with `File > Settings...`, `Project: name > Python Interpreter`, `Add Interpreter > On SSH...`.
 
 ![alt text](./PyCharm_SSH/Interpreter.JPG "Python interpreter")
 
-To use this interpreter, you have to go to `Run > Edit Configurations`, then add a configuration by clicking on `+`
-and finally, select your *On SSH* interpreter from the dropdown menu which is below `Run`.
+The following steps are straight forward, and at some point, the path to the interpreter will be asked.
+Additionally, it will also propose synchronize source folders, if you use this, make sure the paths are set correctly.
+
+The section "*Code editor (4/4) : Run script through a configuration*" explains how to use this interpreter.
+But first, you may want to configure the deployment as explain below.
 
 ### Code editor (3/4) : Deployment
 
@@ -96,24 +98,24 @@ To synchronize source folder between your machine and the CBP, the system requir
 * the local path (where your source code exists) and the remote path on CBP (which you want to synchronize)
 
 In PyCharm, it is done automatically after configuring a remote interpreter. You can check the configuration in
-`Tools > Deployment > Configuration`. The mapping is visible and can be modified in this same window
+`Tools > Deployment > Configuration...`. The mapping is visible and can be modified in this same window
 in the tab named `Mappings`.
 
 ![alt text](./PyCharm_SSH/Deploy.JPG "Deployment")
 
 ### Code editor (4/4) : Run script through a configuration
 
-On the top of the window, there is a dropdown menu next to the run button. Click on it and click on
+In PyCharm, on the top bar, next to the run button, click on the dropdown menu. Then, click on
 `Edit configurations...`.
 
-Once the new window is opened, click on `+` and choose Python. This will create an `Unnamed` setting that you have to modify.
+![alt text](./PyCharm_SSH/Edit_config.JPG "Python interpreter")
 
-Edit the `Name` as you like.
+Once the new window is opened, click on `+` on the top left, and choose Python.
+This will create an `Unnamed` setting that you have to modify:
 
-Below `Run`, click on the dropdown menu and select your Python interpreter that is on the CBP.
-
-Next to the script dropdown menu, indicate the path to your main script on the local computer.
-You can click on the folder icon next to the textbox to get
+ * Edit the `Name` as you like.
+ * Below `Run`, click on the dropdown menu and select your Python interpreter that is on the CBP.
+ * Next to the script dropdown menu, indicate the path to your main script on the local computer.
 
 # Optional features
 
@@ -150,7 +152,7 @@ The **public-key** should look like
 ```
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB8Ht0Z3j6yDWPBHQtOp/R9rjWvfMYo3MSA/K6q2D81r your_email@example.com
 ```
-In the second part, we will need to copy the public-key, so save it.
+In the second part, we will need to copy the public-key, so remember the path to this file or save the public-key.
 
 **Part two (local machine)** : inform your system about the public-key and private-key
 
@@ -183,11 +185,21 @@ touch ~/.ssh/authorized_keys
 vi ~/.ssh/authorized_keys
 ```
 
-3.3 At the end of this file, add your **public-key** on a new line.
+3.3 At the end of this file, add your **public-key** on a new line. With vim you can use the following commands
+```
+shift + g
+shift + a
+enter
+```
+then `shift + inser` to paste, alternatively if you don't find `inser` key, you can do `escape` and `"*p`.
 
-3.4 Type `:x` to save and exit
+To save and exit, you can use
+```
+escape
+:x
+```
 
-3.5 Change permissions using
+3.4 Change permissions using
 ```
 chmod 777 ~/.ssh/authorized_keys
 ```
