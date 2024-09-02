@@ -29,7 +29,7 @@ and the end point of the tunnel will be the remote machine.
 Here is the command that makes a tunnel to the machine `gtx680` of "Centre Blaise Pascal" (CBP):
 
 ```
-ssh -L 22022:gtx680.cbp.ens-lyon.fr:22 username@ssh.ens-lyon.fr
+ssh -L 22022:epyc1.cbp.ens-lyon.fr:22 username@ssh.ens-lyon.fr
 ```
 
 The option `-L` tells we want to make a tunnel, `22022` identifies the entry point of the tunnel and `machine_address`
@@ -131,16 +131,19 @@ The explanations are separated in three parts:
 
 **Part one (local machine)** : create the public-key and the private-key
 
-1.1 On a terminal on the local machine, type `ssh-keygen -t ed25519 -C "your_email@example.com"`.
+**-- 1.1**
+On a terminal on the local machine, type `ssh-keygen -t ed25519 -C "your_email@example.com"`.
 
-1.2 It will propose you a path in which to save the public and private key files.
+**-- 1.2**
+It will propose you a path in which to save the public and private key files.
    ```
    Generating public/private ed25519 key pair.
    Enter file in which to save the key (/path/to/.ssh/id_ed25519):
    ```
    If the proposed path suites you, press `enter`, otherwise type the desired path.
 
-1.3 Then, it will ask you for a passphrase to encrypt the private key. You can choose any password you want,
+**-- 1.3**
+Then, it will ask you for a passphrase to encrypt the private key. You can choose any password you want,
    but remember it since it will be asked later
    ```
    Enter passphrase (empty for no passphrase):
@@ -156,36 +159,53 @@ In the second part, we will need to copy the public-key, so remember the path to
 
 **Part two (local machine)** : inform your system about the public-key and private-key
 
-2.1 Let the system register the key using
+**-- 2.0**
+Enable the ssh agent. Unfortunately, this process differs depending on your operating system (windows, mac or linux).
+In my case, I'm on windows and I am using gitbash, so the resulting command is
+
+```
+eval `ssh-agent -s`
+```
+
+**-- 2.1**
+Let the system register the key.
+
+*Importantly*, make sure you use ssh-add using the same terminal you will use to create the tunnel,
+and type
+
 ```
 ssh-add /path/to/.ssh/id_ed25519
 ```
 where the path `/path/to/.ssh/` is the folder containing the public and private key files.
 
-2.2 It will then ask you for the password you chose at step `1.3`.
+Note : in windows there are many terminals, e.g. `cmd`, `powershell` and `git-bash`.
+If you are uncertain about which to use, you can type previous command on all terminals.
 
-2.3 Edit `config` file that is in folder `C:\Users\username\.ssh` on windows.
-
-```
-Host w6328
-ProxyCommand ssh -W %h:%p username@ssh.ens-lyon.fr
-IdentityFile ~/.ssh/id_ed25519
-ForwardX11 yes
-Compression yes
-```
+**-- 2.2**
+It will then ask you for the password you chose at step `1.3`.
 
 **Part three (CBP)** : add the public-key to the CBP
 
-3.1 If it does not exist, create the file `authorized_keys` using
+**-- 3.0**
+We first connect to the proxy (provide the password the system asks)
+```
+ssh ssh.ens-lyon.fr
+```
+
+**-- 3.1**
+To make sure `authorized_keys` exists, type
 ```
 touch ~/.ssh/authorized_keys
 ```
-3.2 Then open this file, e.g. using
+
+**-- 3.2**
+Then open this file, e.g. using
 ```
-vi ~/.ssh/authorized_keys
+vim ~/.ssh/authorized_keys
 ```
 
-3.3 At the end of this file, add your **public-key** on a new line. With vim you can use the following commands
+**-- 3.3**
+At the end of this file, add your **public-key** on a new line. With vim you can use the following commands
 ```
 shift + g
 shift + a
@@ -199,12 +219,39 @@ escape
 :x
 ```
 
-3.4 Change permissions using
+**-- 3.4**
+Change permissions using
 ```
-chmod 777 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
 ```
 
+Ensure that the home directory (~) permissions are not too open.
+```
+chmod 750 ~
+```
+
+**-- 3.5**
+Now we can connect to CBP by typing (provide the password the system asks)
+```
+ssh epyc1.cbp.ens-lyon.fr
+```
+
+**-- 3.6**
+Once connected to CBP, you have to perform steps `3.1` to `3.4` again.
+
+**-- 3.7**
+Now, you can close the terminal by pressing `ctrl + d` one time to close connection to CBP,
+then press `ctrl + d` a second time to close the connection to the proxy.
+
 That's it! You should now be able to connect through SSH without entering your password.
+
+Now, to connect, open a terminal and type
+```
+ssh -L 22022:epyc1.cbp.ens-lyon.fr:22 username@ssh.ens-lyon.fr
+```
+to save time, you can save this command in a script (for example `epyc1.bat` on windows),
+and just double-click on it to open a connection.
 
 ## Run through SSH and disconnect
 
