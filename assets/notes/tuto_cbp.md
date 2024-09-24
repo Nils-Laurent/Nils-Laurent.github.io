@@ -161,10 +161,18 @@ In the second part, we will need to copy the public-key, so remember the path to
 
 **-- 2.0**
 Enable the ssh agent. Unfortunately, this process differs depending on your operating system (windows, mac or linux).
-In my case, I'm on windows and I am using gitbash, so the resulting command is
 
+In my case, I'm on Windows so in an `PowerShell` in admin mode, I type
+```
+Set-Service ssh-agent -StartupType Manual
+```
+I am using `GitBash`, so I open it and type
 ```
 eval `ssh-agent -s`
+```
+If you use `PowerShell`, instead of the previous command, you can type
+```
+ssh-agent -s
 ```
 
 **-- 2.1**
@@ -195,7 +203,7 @@ ssh ssh.ens-lyon.fr
 **-- 3.1**
 To make sure `authorized_keys` exists, type
 ```
-touch ~/.ssh/authorized_keys
+mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys
 ```
 
 **-- 3.2**
@@ -222,8 +230,7 @@ escape
 **-- 3.4**
 Change permissions using
 ```
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
 ```
 
 Ensure that the home directory (~) permissions are not too open.
