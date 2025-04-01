@@ -1,0 +1,16 @@
+*blx.bib
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.nav
+*.odt
+*.out
+*.snm
+*.synctex.gz
+*.tns
+*.toc
+*.glsdefs
+
+!assets/CV/*.pdf
