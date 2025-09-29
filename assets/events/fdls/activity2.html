@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Activité 2</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="starter-template.css" rel="stylesheet"> -->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm">
+      <div class="container col-4">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarAnimals" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarMusic" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarMisc" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarAnimals">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown lead">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                Animaux
+              </a>
+              <ul class="dropdown-menu" id="animals">
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarMusic">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown lead">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                Musique
+              </a>
+              <ul class="dropdown-menu" id="music">
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarMisc">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown lead">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                Divers
+              </a>
+              <ul class="dropdown-menu" id="misc">
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container col-2">
+      </div>
+    </nav>
+
+    <header>
+      <div class="text-center">
+        <h1 id="spectro_title">Activité 2</h1>
+      </div>
+    </header>
+
+    <main role="main" class="container">
+      <div>
+        <video id="spectro">
+          <source id="spectro_src" src="./assets/video/dolphin.mp4">
+        </video>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto align-content-center">
+          <button class="btn btn-outline-primary col-12 mx-lg-4 py-4" type="button" id="play_btn">
+            <!--<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">-->
+            <svg width="36" height="36" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+              <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+            </svg>
+            Écouter
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/act2.js"></script>
+  </body>
+</html>
