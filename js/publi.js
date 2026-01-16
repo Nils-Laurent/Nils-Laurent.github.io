@@ -10,7 +10,9 @@ function append_list(inList) {
     if (lY != el.producedDateY_i) {
       lY = el.producedDateY_i;
       lP = document.createElement('p');
-      lP.classList.add("lead");
+      lP.classList.add("text-xl");
+      lP.classList.add("font-thin");
+      lP.classList.add("my-4");
       lP.innerHTML = el.producedDateY_i;
       lContainer.appendChild(lP);
 
@@ -20,6 +22,8 @@ function append_list(inList) {
 
 
     lIt = document.createElement('li');
+    lIt.classList.add("list-disc");
+    lIt.classList.add("ml-8");
 
     if (el.hasOwnProperty('authFullName_s')) {
       lStr = document.createElement('strong');
@@ -32,6 +36,7 @@ function append_list(inList) {
       lIt.appendChild(lSep);
 
       lA = document.createElement('a');
+      lA.classList.add("text-blue-600");
       lA.href = el.uri_s;
       lA.target = "_blank";
       lA.innerHTML = el.title_s;
@@ -69,6 +74,7 @@ function append_list(inList) {
       lIt.appendChild(lSep);
 
       lA = document.createElement('a');
+      lA.classList.add("text-blue-600");
       lA.href = el.seeAlso_s;
       lA.innerHTML = "[CODE]";
       lA.target = "_blank";
